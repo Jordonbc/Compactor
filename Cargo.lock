@@ -183,7 +183,7 @@ dependencies = [
 [[package]]
 name = "compresstimator"
 version = "0.1.0"
-source = "git+https://github.com/Freaky/compresstimator.git?rev=26ddd3f499bc46f2c8b3ce814e9723ed41b47919#26ddd3f499bc46f2c8b3ce814e9723ed41b47919"
+source = "git+https://github.com/Jordonbc/compresstimator.git?rev=26ddd3f499bc46f2c8b3ce814e9723ed41b47919#26ddd3f499bc46f2c8b3ce814e9723ed41b47919"
 dependencies = [
  "lz4",
 ]

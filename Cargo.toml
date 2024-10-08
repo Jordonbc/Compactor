@@ -9,7 +9,7 @@ license = "MIT"
 
 [dependencies]
 backtrace = "0.3.32"
-compresstimator = { git = "https://github.com/Freaky/compresstimator.git", rev = "26ddd3f499bc46f2c8b3ce814e9723ed41b47919" }
+compresstimator = { git = "https://github.com/Jordonbc/compresstimator.git", rev = "26ddd3f499bc46f2c8b3ce814e9723ed41b47919" }
 crossbeam-channel = "0.5"
 ctrlc = "3.1"
 directories = "2.0.1"
