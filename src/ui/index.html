@@ -6,20 +6,22 @@
   </head>
   <body>
     <header>
-      <h1>
-        <span class="side">⇒</span> C<span class="sml">o<span class="sml">m<span class="sml">p<span class="sml">a</span>c</span>t</span>o</span>r <span class="side">⇐</span>
-      </h1>
+      <div class="header-container">
+        <h1>
+          <span class="side">⇒</span> C<span class="sml">o<span class="sml">m<span class="sml">p<span class="sml">a</span>c</span>t</span>o</span>r <span class="side">⇐</span>
+        </h1>
+        <nav>
+          <ul>
+            <li><button id="Button_Page_Compress" class="active" onclick="Gui.page('Compress')">⌛ Compact</button></li>
+            <li><button id="Button_Page_Settings" onclick="Gui.page('Settings')">☸ Settings</button></li>
+            <li><button id="Button_Page_About" onclick="Gui.page('About')">⌕ About</button></li>
+          </ul>
+        </nav>
+      </div>
       <div class="push"></div>
-      <nav>
-        <ul>
-          <li><button id="Button_Page_Compress" class="active" onclick="Gui.page('Compress')">⌛ Compact</button></li>
-          <li><button id="Button_Page_Settings" onclick="Gui.page('Settings')">☸ Settings</button></li>
-          <li><button id="Button_Page_About" onclick="Gui.page('About')">⌕ About</button></li>
-        </ul>
-        <div style="text-align: right; margin: 4px;">
-          <small style="color: grey;"><span class="version"></span> / <span class="compile-date"></span></small>
-        </div>
-      </nav>
+      <div style="text-align: right; margin: 4px;">
+        <small style="color: grey;"><span class="version"></span> / <span class="compile-date"></span></small>
+      </div>
     </header>
 
     <main>
