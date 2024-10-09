@@ -1,8 +1,11 @@
 body {
-  font-family: "Helvetica Neue",Helvetica,Arial,serif;
-  color: #eee;
-  background-color: rgb(61, 61, 61);
-  margin: 0; padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #f0f0f0;
+  background-color: #2c2c2c;
+  margin: 0;
+  padding: 10px;
+  line-height: 1.5;
+  overflow: hidden;
 }
 
 header {
@@ -15,10 +18,6 @@ header .push {
   margin-left: auto;
 }
 
-progress, textarea {
-  margin: 6px;
-}
-
 h1 {
   text-transform: uppercase;
   font-family: Impact, Oswald, Tahoma, sans-serif;
@@ -28,71 +27,159 @@ h1 {
   background-color: #333;
 }
 
-h1 span.side {
-  font-size: larger;
-  font-weight: normal;
-  color: #666;
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
 }
 
-h1 span.sml {
-  font-size: smaller;
+nav li {
+  margin-left: 1rem;
 }
 
-#Button_Folder span {
-  color: #888;
-  padding-left: 8px;
-  padding-right: 8px;
+nav button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
-#Button_Folder {
-  width: 80%;
+nav button.active {
+  background-color: #0079d6;
+  color: #fff;
+  border-radius: 4px;
 }
 
-input, textarea, select {
-  border: 1px solid black;
-  padding: 4px;
-  margin: 4px;
-  font-size: larger;
+button {
+  color: #fff;
+  background-color: #0079d6;
+  border: none;
+  padding: 0.75rem 1rem;
+  margin: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-a, a:visited {
-  color: #229af7;
-  text-decoration: none;
+button:hover {
+  background-color: #005fa3;
 }
 
-a:active, a:hover {
-  color: #44abf9;
-  text-decoration: underline;
-}
-
-section button.stop {
-  background-color: rgb(219, 40, 40);
-}
-
-section button.pause {
-  background-color: rgb(118, 118, 118);
-}
-
-section button.analyse {
-  background-color: rgb(118, 118, 118);
-}
-
-section button.compress {
-  background-color: rgb(33, 186, 69);
-}
-
-section button.decompress {
-  background-color: rgb(33, 133, 208);
+.hidden {
+  display: none;
 }
 
 progress {
+  width: 100%;
   height: 20px;
-  width: 90%;
+  border-radius: 25px;
 }
 
-section {
-  margin: 16px;
-  display: block;
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: #222;
+  color: #f0f0f0;
+}
+
+.section {
+  padding: 2rem;
+}
+
+.section .box {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  display: inline-block;
+  border: 1px solid black;
+  background-color: #fff;
+  vertical-align: middle;
+}
+
+.saved-box,
+.compressed-box,
+.compressible-box,
+.skipped-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border: 1px solid black;
+  vertical-align: middle;
+}
+
+.saved-box {
+  background-color: #e0e0e0;
+}
+
+.compressed-box {
+  background-color: #33cc33;
+}
+
+.compressible-box {
+  background-color: #0079d6;
+}
+
+.skipped-box {
+  background-color: #ff9933;
+}
+
+#File_Count_Breakdown {
+  display: flex;
+  width: 100%;
+  height: 20px;
+  margin: 16px auto;
+  border: 1px solid #444;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.breakdown-section {
+  height: 100%;
+  transition: width 0.4s ease;
+  padding: 0 5px;
+}
+
+.breakdown-compressed {
+  background-color: #33cc33; /* Green for compressed */
+}
+
+.breakdown-compressible {
+  background-color: #0079d6; /* Blue for compressible */
+}
+
+.breakdown-skipped {
+  background-color: #ff9933; /* Orange for skipped */
+}
+
+.breakdown-saved {
+  background-color: #e0e0e0; /* Light grey for saved */
+}
+
+/* Align boxes and text properly */
+#Analysis div {
+  margin-bottom: 5px;
+}
+
+#Analysis .box {
+  margin-right: 10px;
+  vertical-align: middle;
+} /* Add some spacing between the box and the text */
+
+#Analysis .saved,
+#Analysis .compressed,
+#Analysis .compressible,
+#Analysis .excluded {
+  vertical-align: middle;
 }
 
 div.ctr {
@@ -100,109 +187,31 @@ div.ctr {
   justify-content: center;
 }
 
-textarea {
-  width: 95%;
-  height: 200px;
+.legend {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #ffffff;
 }
 
-#Start {
-  align-items: center;
-}
-
-#Activity_Text {
-  line-height: 1.2em;
-  height: 1.2em;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-#Activity_Progress {
-  width: 95%;
-}
-
-#Analysis .saved .box, #Breakdown_Saved {
-  background-color: white;
-}
-
-#Analysis .compressed .box, #Breakdown_Compressed {
-  background-color: green;
-}
-
-#Analysis .compressible .box, #Breakdown_Compressible {
-  background-color: #0079d6;
-}
-
-#Analysis .excluded .box, #Breakdown_Skipped {
-  background-color: orange;
-}
-
-#Analysis .box {
-  border: 1px solid black;
-}
-
-#Analysis div div {
-  padding: 2px;
-}
-
-#File_Count_Breakdown {
-  display:flex;
-  width: 95%;
-  font-size: smaller;
-  border: 1px solid black;
+.legend .box {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
   border-radius: 2px;
-  margin: 8px auto;
-  overflow: hidden;
+  vertical-align: middle;
+  border: 1px solid black;
 }
 
-#File_Count_Breakdown div {
-  overflow: hidden;
-  height: 18px;
+#FolderChooser .ctr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-#Breakdown_Compressed, #Breakdown_Compressible, #Breakdown_Skipped {
-  width: 0;
-}
-
-#Breakdown_Saved {
-  flex: auto;
-}
-
-nav button {
-  display: inline-block;
-  background-color: transparent;
-  color: #fff;
-  padding: 6px;
-  border-width: 0;
-  cursor: pointer;
-}
-
-nav button.active {
-  background-color: #229af7;
-}
-
-section button {
-  color: #fff;
-  background-color: #0079d6;
-  border-color: transparent;
-  padding: 6px;
-  border-radius: 4px;
-  border-width: 1px;
-  margin: 4px;
-  cursor: pointer;
-}
-
-section button:hover, section button:active {
-  background-color: #2289e6;
-}
-
-ul {
-  list-style-type: none;
-  display: block;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-li {
-  display: inline-block;
+#Button_Folder {
+  padding: 1rem 2rem;
 }
