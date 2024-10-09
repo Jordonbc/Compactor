@@ -6,22 +6,19 @@
   </head>
   <body>
     <header>
-      <div class="header-container">
-        <h1 style="flex: 1; text-align: left;">
-          <span class="side">⇒</span> C<span class="sml">o<span class="sml">m<span class="sml">p<span class="sml">a</span>c</span>t</span>o</span>r <span class="side">⇐</span>
-        </h1>
-        <nav style="flex: 1; text-align: right;">
-          <ul style="display: inline-flex; gap: 10px;">
-            <li><button id="Button_Page_Compress" class="active" onclick="Gui.page('Compress')">⌛ Compact</button></li>
-            <li><button id="Button_Page_Settings" onclick="Gui.page('Settings')">☸ Settings</button></li>
-            <li><button id="Button_Page_About" onclick="Gui.page('About')">⌕ About</button></li>
-          </ul>
-        </nav>
-      </div>
+      <h1><span class="side">⇒</span> C<span class="sml">o<span class="sml">m<span class="sml">p<span class="sml">a</span>c</span>t</span>o</span>r <span class="side">⇐</span></h1>
       <div class="push"></div>
-      <div style="text-align: right; margin: 4px;">
-        <small style="color: grey;"><span class="version"></span> / <span class="compile-date"></span></small>
-      </div>
+      <nav>
+        <ul>
+          <li><button id="Button_Page_Compress" class="active" onclick="Gui.page('Compress')">⌛ Compact</button></li>
+          <li><button id="Button_Page_Settings" onclick="Gui.page('Settings')">☸ Settings</button></li>
+          <li><button id="Button_Page_About" onclick="Gui.page('About')">⌕ About</button></li>
+        </ul>
+        <div style="text-align: right;margin: 4px">
+          <small style="color: grey;"><span class="version"></span> / <span class="compile-date"></span></small>
+        </div>
+      </nav>
+      <br>
     </header>
 
     <main>
@@ -32,8 +29,8 @@
           </div>
         </section>
 
-        <section id="Activity" class="hidden">
-          <div id="Activity_Text">Scanned in 0ms</div>
+        <section id="Activity" style="display: none;">
+          <div id="Activity_Text"></div>
           <div class="ctr">
             <progress id="Activity_Progress"></progress>
           </div>
@@ -50,11 +47,12 @@
           </div>
         </section>
 
-          <!-- Modern breakdown bar -->
-          <div id="File_Count_Breakdown" class="breakdown-container">
-            <div id="Breakdown_Compressed" class="breakdown-section breakdown-compressed"></div>
-            <div id="Breakdown_Compressible" class="breakdown-section breakdown-compressible"></div>
-            <div id="Breakdown_Skipped" class="breakdown-section breakdown-skipped"></div>
+        <section id="Analysis" style="display: none;">
+          <div id="File_Count_Breakdown">
+            <div id="Breakdown_Compressed"></div>
+            <div id="Breakdown_Compressible"></div>
+            <div id="Breakdown_Skipped"></div>
+            <div id="Breakdown_Saved"></div>
           </div>
           <div id="Legend" class="legend">
             <div><span class="box breakdown-compressed"></span> <span id="Legend_Compressed">0 B</span> in compressed</div>
