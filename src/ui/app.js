@@ -418,11 +418,11 @@ var Gui = (function() {
                 var skippedWidth = (data.skipped.physical_size / total) * 100;
                 var savedWidth = ((data.compressed.logical_size - data.compressed.physical_size) / total) * 100;
 
-                // Update the breakdown bar sections without text
-                $("#Breakdown_Compressed").css("width", compressedWidth + "%").css("background-color", "#33cc33");
-                $("#Breakdown_Compressible").css("width", compressibleWidth + "%").css("background-color", "#0079d6");
-                $("#Breakdown_Skipped").css("width", skippedWidth + "%").css("background-color", "#ff9933");
-                $("#Breakdown_Saved").css("width", savedWidth + "%").css("background-color", "#e0e0e0");
+                // Update the breakdown bar sections
+                $("#Breakdown_Compressed").css("width", compressedWidth + "%");
+                $("#Breakdown_Compressible").css("width", compressibleWidth + "%");
+                $("#Breakdown_Skipped").css("width", skippedWidth + "%");
+                $("#Breakdown_Saved").css("width", savedWidth + "%");
             }
         },
 
