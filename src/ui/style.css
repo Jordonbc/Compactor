@@ -111,7 +111,7 @@ textarea {
   display: inline-block;
   width: 20px;
   height: 20px;
-  margin-right: 8px;
+  margin-right: 4px;
   border: 1px solid black;
   vertical-align: middle;
   border-radius: 50%;
@@ -172,7 +172,7 @@ textarea {
 }
 
 #Analysis .box {
-  margin-right: 10px;
+  margin-right: 4px;
   vertical-align: middle;
 } /* Add some spacing between the box and the text */
 
@@ -200,7 +200,7 @@ div.ctr {
   display: inline-block;
   width: 15px;
   height: 15px;
-  margin-right: 5px;
+  margin-right: 1px;
   border-radius: 50%;
   vertical-align: middle;
   border: 1px solid black;
