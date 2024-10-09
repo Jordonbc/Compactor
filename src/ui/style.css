@@ -129,6 +129,10 @@ textarea {
   background-color: #ff9933; /* Orange for skipped */
 }
 
+.breakdown-saved {
+  background-color: #e0e0e0; /* Light grey for saved */
+}
+
 .legend {
   margin-top: 10px;
   display: flex;

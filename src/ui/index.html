@@ -47,12 +47,13 @@
           </div>
         </section>
 
-        <section id="Analysis" style="display: none;">
+        <!-- Issue is below -->
+        <section id="Analysis" class="hidden">
           <div id="File_Count_Breakdown">
-            <div id="Breakdown_Compressed"></div>
-            <div id="Breakdown_Compressible"></div>
-            <div id="Breakdown_Skipped"></div>
-            <div id="Breakdown_Saved"></div>
+            <div id="Breakdown_Compressed" class="breakdown-section breakdown-compressed"></div>
+            <div id="Breakdown_Compressible" class="breakdown-section breakdown-compressible"></div>
+            <div id="Breakdown_Skipped" class="breakdown-section breakdown-skipped"></div>
+            <div id="Breakdown_Saved" class="breakdown-section breakdown-saved"></div>
           </div>
           <div id="Legend" class="legend">
             <div><span class="box breakdown-compressed"></span> <span id="Legend_Compressed">0 B</span> in compressed</div>
@@ -62,6 +63,7 @@
           </div>
         </section>
       </section>
+      <!-- Issue is above -->
 
       <section class="page hidden" id="Settings">
         <label>File patterns to exclude from compression<br>
