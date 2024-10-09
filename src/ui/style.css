@@ -91,3 +91,40 @@ textarea {
   margin-right: 8px;
   display: inline-block;
 }
+
+/* Modern breakdown bar styles */
+#File_Count_Breakdown {
+  display: flex;
+  width: 95%;
+  height: 20px;
+  margin: 16px auto;
+  border: 1px solid #444;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.breakdown-section {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.breakdown-compressed {
+  background-color: #33cc33; /* Green color for compressed data */
+}
+
+.breakdown-compressible {
+  background-color: #0079d6; /* Blue color for compressible data */
+}
+
+.breakdown-skipped {
+  background-color: #ff9933; /* Orange color for skipped data */
+}
+
+.breakdown-saved {
+  background-color: #e0e0e0; /* Light grey color for saved data */
+}
+
+.breakdown-container {
+  margin-top: 16px;
+}

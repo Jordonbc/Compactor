@@ -237,183 +237,205 @@ var Response = (function() {
 
 // Anything poking the GUI lives here
 var Gui = (function() {
-	"use strict";
+    "use strict";
 
-	return {
-		boot: function() {
-			$("a[href]").on("click", function(e) {
-				e.preventDefault();
-				Action.open_url($(this).attr("href"));
-				return false;
-			});
+    return {
+        boot: function() {
+            $("a[href]").on("click", function(e) {
+                e.preventDefault();
+                Action.open_url($(this).attr("href"));
+                return false;
+            });
 
-			$("#Button_Save").on("click", function() {
-				Action.save_config({
-				  decimal: $("#SI_Units").val() == "D",
-					compression: $("#Compression_Mode").val(),
-					excludes: $("#Excludes").val()
-				});
-			});
+            $("#Button_Save").on("click", function() {
+                Action.save_config({
+                    decimal: $("#SI_Units").val() == "D",
+                    compression: $("#Compression_Mode").val(),
+                    excludes: $("#Excludes").val()
+                });
+            });
 
-			$("#Button_Reset").on("click", function() {
-				Action.reset_config();
-			});
-		},
+            $("#Button_Reset").on("click", function() {
+                Action.reset_config();
+            });
+        },
 
-		page: function(page) {
-			$("nav button").removeClass("active");
-			$("#Button_Page_" + page).addClass("active");
-			$("section.page").hide();
-			$("#" + page).show();
-		},
+        page: function(page) {
+            $("nav button").removeClass("active");
+            $("#Button_Page_" + page).addClass("active");
+            $("section.page").hide();
+            $("#" + page).show();
+        },
 
-		version: function(date, version) {
-			$(".compile-date").text(date);
-			$(".version").text(version);
-		},
+        version: function(date, version) {
+            $(".compile-date").text(date);
+            $(".version").text(version);
+        },
 
-		set_decimal: function(dec) {
-			var field = $("#SI_Units");
-			if (dec) {
-				field.val("D");
-				Util.bytes_to_human = Util.bytes_to_human_dec;
-			} else {
-				field.val("I");
-				Util.bytes_to_human = Util.bytes_to_human_bin;
-			}
-		},
+        set_decimal: function(dec) {
+            var field = $("#SI_Units");
+            if (dec) {
+                field.val("D");
+                Util.bytes_to_human = Util.bytes_to_human_dec;
+            } else {
+                field.val("I");
+                Util.bytes_to_human = Util.bytes_to_human_bin;
+            }
+        },
 
-		set_compression: function(compression) {
-			$("#Compression_Mode").val(compression);
-		},
+        set_compression: function(compression) {
+            $("#Compression_Mode").val(compression);
+        },
 
-		set_excludes: function(excludes) {
-			$("#Excludes").val(excludes);
-		},
+        set_excludes: function(excludes) {
+            $("#Excludes").val(excludes);
+        },
 
-		set_folder: function(folder) {
-			var bits = folder.split(/:\\|\\/).map(function(x) { return document.createTextNode(x); });
-			var end = bits.pop();
+        set_folder: function(folder) {
+            var bits = folder.split(/:\\|\\/).map(function(x) { return document.createTextNode(x); });
+            var end = bits.pop();
 
-			var button = $("#Button_Folder");
-			button.empty();
-			bits.forEach(function(bit) {
-				button.append(bit);
-				button.append($("<span>❱</span>"));
-			});
-			button.append(end);
+            var button = $("#Button_Folder");
+            button.empty();
+            bits.forEach(function(bit) {
+                button.append(bit);
+                button.append($("<span>❱</span>"));
+            });
+            button.append(end);
 
-			Gui.scanning();
-		},
+            Gui.scanning();
+        },
 
-		set_status: function(status, pct) {
-			$("#Activity_Text").text(status);
-			if (pct != null) {
-				$("#Activity_Progress").val(pct);
-			} else {
-				$("#Activity_Progress").removeAttr("value");
-			}
-		},
+        set_status: function(status, pct) {
+            $("#Activity_Text").text(status);
+            if (pct != null) {
+                $("#Activity_Progress").val(pct);
+            } else {
+                $("#Activity_Progress").removeAttr("value");
+            }
+        },
 
-		scanning: function() {
-			Gui.reset_folder_summary();
-			$("#Activity").show();
-			$("#Analysis").show();
-			$("#Button_Pause").show();
-			$("#Button_Resume").hide();
-			$("#Button_Stop").show();
-			$("#Button_Analyse").hide();
-			$("#Button_Compress").hide();
-			$("#Button_Decompress").hide();
-			$("#Command").show();
-		},
+        scanning: function() {
+            Gui.reset_folder_summary();
+            $("#Activity").show();
+            $("#Analysis").show();
+            $("#Button_Pause").show();
+            $("#Button_Resume").hide();
+            $("#Button_Stop").show();
+            $("#Button_Analyse").hide();
+            $("#Button_Compress").hide();
+            $("#Button_Decompress").hide();
+            $("#Command").show();
+        },
 
-		compacting: function() {
-			$("#Button_Pause").show();
-			$("#Button_Resume").hide();
-			$("#Button_Stop").show();
-			$("#Button_Analyse").hide();
-			$("#Button_Compress").hide();
-			$("#Button_Decompress").hide();
-		},
+        compacting: function() {
+            $("#Button_Pause").show();
+            $("#Button_Resume").hide();
+            $("#Button_Stop").show();
+            $("#Button_Analyse").hide();
+            $("#Button_Compress").hide();
+            $("#Button_Decompress").hide();
+        },
 
-		paused: function() {
-			$("#Button_Pause").hide();
-			$("#Button_Resume").show();
-		},
+        paused: function() {
+            $("#Button_Pause").hide();
+            $("#Button_Resume").show();
+        },
 
-		resumed: function() {
-			$("#Button_Pause").show();
-			$("#Button_Resume").hide();
-		},
+        resumed: function() {
+            $("#Button_Pause").show();
+            $("#Button_Resume").hide();
+        },
 
-		stopped: function() {
-			Gui.scanned();
-		},
+        stopped: function() {
+            Gui.scanned();
+        },
 
-		scanned: function() {
-			$("#Button_Pause").hide();
-			$("#Button_Resume").hide();
-			$("#Button_Stop").hide();
-			$("#Button_Analyse").show();
+        scanned: function() {
+            $("#Button_Pause").hide();
+            $("#Button_Resume").hide();
+            $("#Button_Stop").hide();
+            $("#Button_Analyse").show();
 
-			if ($("#File_Count_Compressible").text() != "0") {
-				$("#Button_Compress").show();
-			} else {
-				$("#Button_Compress").hide();
-			}
+            if ($("#File_Count_Compressible").text() != "0") {
+                $("#Button_Compress").show();
+            } else {
+                $("#Button_Compress").hide();
+            }
 
-			if ($("#File_Count_Compressed").text() != "0") {
-				$("#Button_Decompress").show();
-			} else {
-				$("#Button_Decompress").hide();
-			}
-		},
+            if ($("#File_Count_Compressed").text() != "0") {
+                $("#Button_Decompress").show();
+            } else {
+                $("#Button_Decompress").hide();
+            }
+        },
 
-		reset_folder_summary: function() {
-			Gui.set_folder_summary({
-				logical_size: 0,
-				physical_size: 0,
-				compressed: {count: 0, logical_size: 0, physical_size: 0},
-				compressible: {count: 0, logical_size: 0, physical_size: 0},
-				skipped: {count: 0, logical_size: 0, physical_size: 0}
-			});
-		},
+        reset_folder_summary: function() {
+            Gui.set_folder_summary({
+                logical_size: 0,
+                physical_size: 0,
+                compressed: {count: 0, logical_size: 0, physical_size: 0},
+                compressible: {count: 0, logical_size: 0, physical_size: 0},
+                skipped: {count: 0, logical_size: 0, physical_size: 0}
+            });
+        },
 
-		set_folder_summary: function(data) {
-			$("#Size_Logical").text(Util.bytes_to_human(data.logical_size));
-			$("#Size_Physical").text(Util.bytes_to_human(data.physical_size));
+        set_folder_summary: function(data) {
+            // Update textual summaries
+            $("#Size_Logical").text(Util.bytes_to_human(data.logical_size));
+            $("#Size_Physical").text(Util.bytes_to_human(data.physical_size));
 
-			if (data.logical_size > 0) {
-				var ratio = (data.physical_size / data.logical_size);
-				$("#Compress_Ratio").text(Util.format_number(ratio, 2));
-			} else {
-				$("#Compress_Ratio").text("1.00");
-			}
+            if (data.logical_size > 0) {
+                var ratio = data.physical_size / data.logical_size;
+                $("#Compress_Ratio").text(Util.format_number(ratio, 2));
+            } else {
+                $("#Compress_Ratio").text("1.00");
+            }
 
-			if (data.logical_size > 0) {
-				var total = data.logical_size;
-				$("#Compressed_Size").text(Util.bytes_to_human(data.compressed.physical_size));
-				$("#Compressible_Size").text(Util.bytes_to_human(data.compressible.physical_size));
-				$("#Skipped_Size").text(Util.bytes_to_human(data.skipped.physical_size));
-				document.getElementById("Breakdown_Compressed").style.width = "" + 100 * (data.compressed.physical_size / total).toFixed(2) + "%";
-				document.getElementById("Breakdown_Compressible").style.width = "" + 100 * (data.compressible.physical_size / total).toFixed(2) + "%";
-				document.getElementById("Breakdown_Skipped").style.width = "" + 100 * (data.skipped.physical_size / total).toFixed(2) + "%";
-			}
+            $("#Compressed_Size").text(Util.bytes_to_human(data.compressed.physical_size));
+            $("#Compressible_Size").text(Util.bytes_to_human(data.compressible.physical_size));
+            $("#Skipped_Size").text(Util.bytes_to_human(data.skipped.physical_size));
+            $("#Space_Saved").text(Util.bytes_to_human(data.compressed.logical_size - data.compressed.physical_size));
+            $("#File_Count_Compressed").text(Util.format_number(data.compressed.count, 0));
+            $("#File_Count_Compressible").text(Util.format_number(data.compressible.count, 0));
+            $("#File_Count_Skipped").text(Util.format_number(data.skipped.count, 0));
 
-			$("#Space_Saved").text(Util.bytes_to_human(data.compressed.logical_size - data.compressed.physical_size));
+            // Calculate the widths of the breakdown sections
+            if (data.logical_size > 0) {
+                var total = data.logical_size;
+                var compressedWidth = (100 * (data.compressed.physical_size / total)).toFixed(2);
+                var compressibleWidth = (100 * (data.compressible.physical_size / total)).toFixed(2);
+                var skippedWidth = (100 * (data.skipped.physical_size / total)).toFixed(2);
+                var savedWidth = (100 * ((data.compressed.logical_size - data.compressed.physical_size) / total)).toFixed(2);
 
-			$("#File_Count_Compressed").text(Util.format_number(data.compressed.count, 0));
-			$("#File_Count_Compressible").text(Util.format_number(data.compressible.count, 0));
-			$("#File_Count_Skipped").text(Util.format_number(data.skipped.count, 0));
-		},
+                // Update the breakdown bar sections
+                var compressedElement = document.getElementById("Breakdown_Compressed");
+                if (compressedElement) {
+                    compressedElement.style.width = compressedWidth + "%";
+                }
 
-		analysis_complete: function() {
-			$("#Activity").hide();
-			$("#Analysis").show();
+                var compressibleElement = document.getElementById("Breakdown_Compressible");
+                if (compressibleElement) {
+                    compressibleElement.style.width = compressibleWidth + "%";
+                }
 
-		}
-	};
+                var skippedElement = document.getElementById("Breakdown_Skipped");
+                if (skippedElement) {
+                    skippedElement.style.width = skippedWidth + "%";
+                }
+
+                var savedElement = document.getElementById("Breakdown_Saved");
+                if (savedElement) {
+                    savedElement.style.width = savedWidth + "%";
+                }
+            }
+        },
+
+        analysis_complete: function() {
+            $("#Activity").hide();
+            $("#Analysis").show();
+        }
+    };
 })();
 
 $(document).ready(Gui.boot);
