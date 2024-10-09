@@ -101,9 +101,37 @@ textarea {
   display: inline-block;
   border: 1px solid black;
   background-color: #fff;
+  vertical-align: middle;
 }
 
-/* Modern breakdown bar styles */
+.saved-box,
+.compressed-box,
+.compressible-box,
+.skipped-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border: 1px solid black;
+  vertical-align: middle;
+}
+
+.saved-box {
+  background-color: #e0e0e0;
+}
+
+.compressed-box {
+  background-color: #33cc33;
+}
+
+.compressible-box {
+  background-color: #0079d6;
+}
+
+.skipped-box {
+  background-color: #ff9933;
+}
+
 #File_Count_Breakdown {
   display: flex;
   width: 100%;
@@ -137,41 +165,21 @@ textarea {
   background-color: #e0e0e0; /* Light grey for saved */
 }
 
-/* Boxes next to text labels */
-#Analysis .saved .box,
-.saved-box {
-  width: 20px;
-  height: 20px;
-  background-color: #e0e0e0;
-  display: inline-block;
-  border: 1px solid black;
+/* Align boxes and text properly */
+#Analysis div {
+  margin-bottom: 5px;
 }
 
-#Analysis .compressed .box,
-.compressed-box {
-  width: 20px;
-  height: 20px;
-  background-color: #33cc33;
-  display: inline-block;
-  border: 1px solid black;
-}
+#Analysis .box {
+  margin-right: 10px;
+  vertical-align: middle;
+} /* Add some spacing between the box and the text */
 
-#Analysis .compressible .box,
-.compressible-box {
-  width: 20px;
-  height: 20px;
-  background-color: #0079d6;
-  display: inline-block;
-  border: 1px solid black;
-}
-
-#Analysis .excluded .box,
-.skipped-box {
-  width: 20px;
-  height: 20px;
-  background-color: #ff9933;
-  display: inline-block;
-  border: 1px solid black;
+#Analysis .saved,
+#Analysis .compressed,
+#Analysis .compressible,
+#Analysis .excluded {
+  vertical-align: middle;
 }
 
 div.ctr {
