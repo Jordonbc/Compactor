@@ -114,6 +114,7 @@ textarea {
   margin-right: 8px;
   border: 1px solid black;
   vertical-align: middle;
+  border-radius: 50%;
 }
 
 .saved-box {
@@ -200,7 +201,7 @@ div.ctr {
   width: 15px;
   height: 15px;
   margin-right: 5px;
-  border-radius: 2px;
+  border-radius: 50%;
   vertical-align: middle;
   border: 1px solid black;
 }
