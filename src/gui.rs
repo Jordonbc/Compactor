@@ -142,21 +142,28 @@ impl<T> GuiWrapper<T> {
 
     pub fn choose_folder(&self) -> Receiver<Option<PathBuf>> {
         let (tx, rx) = bounded::<Option<PathBuf>>(1);
+    
         let _ = self.0.dispatch(move |_| {
-            let folder = known_folder(&knownfolders::FOLDERID_ProgramFiles);
-            let folder = folder.and_then(|path| path.to_str().map(str::to_string)).unwrap_or_default();
+            // Get the directory where the application is running
+            let folder = std::env::current_exe()
+                .ok()
+                .and_then(|path| path.parent().map(|p| p.to_path_buf()))
+                .and_then(|path| path.to_str().map(str::to_string))
+                .unwrap_or_default();
+    
             let params = wfd::DialogParams {
                 options: wfd::FOS_PICKFOLDERS,
                 title: "Select a directory",
                 default_folder: &folder,
                 ..Default::default()
             };
+    
             let _ = tx.send(
                 wfd::open_dialog(params).map(|res| res.selected_file_path).ok()
             );
             Ok(())
         });
-
+    
         rx
     }
 }

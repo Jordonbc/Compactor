@@ -19,14 +19,9 @@ pub struct Backend<T> {
 }
 
 fn format_size(size: u64, decimal: bool) -> String {
-    use humansize::{file_size_opts as options, FileSize};
+    use humansize::{format_size, DECIMAL, BINARY};
 
-    size.file_size(if decimal {
-        options::DECIMAL
-    } else {
-        options::BINARY
-    })
-    .expect("file size")
+    format_size(size, if decimal { DECIMAL } else { BINARY })
 }
 
 impl<T> Backend<T> {
